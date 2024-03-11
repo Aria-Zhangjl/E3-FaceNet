@@ -1,0 +1,115 @@
+# @package _group_
+name: stylenerf_ffhq_transfer_text
+
+G_kwargs:
+    class_name: "training.networks_4_E3_Face.Generator"
+    z_dim: 512
+    w_dim: 512
+    t_dim: 512 # see CLIP global embedding
+
+    mapping_kwargs:
+        module_name: "training.networks_4_E3_Face.MappingNetwork_4_text"
+        num_layers: ${spec.map}
+
+    synthesis_kwargs:
+        # global settings
+        num_fp16_res: ${num_fp16_res}
+        channel_base: 1
+        channel_max: 512
+        conv_clamp: 256
+        kernel_size: 1
+        architecture: skip
+        upsample_mode: "pixelshuffle" # maybe nearest
+
+        z_dim_bg: 32
+        z_dim: 0
+        resolution_vol: 32
+        resolution_start: 32
+        rgb_out_dim: 64
+
+        use_noise: False
+        module_name: "training.stylenerf_4_E3_Face.NeRFSynthesisNetwork"
+        no_bbox: True
+        margin: 0
+        magnitude_ema_beta: 0.999
+
+        camera_kwargs:
+            range_v: [1.4157963267948965, 1.7257963267948966]
+            range_u: [-0.3, 0.3]
+            range_radius: [1.0, 1.0]
+            depth_range: [0.88, 1.12]
+            fov: 12
+            gaussian_camera: True
+            angular_camera: True
+            depth_transform:  ~
+            dists_normalized: False
+            ray_align_corner: True
+            bg_start: 0.5
+        
+        renderer_kwargs:
+            n_bg_samples: 4
+            n_ray_samples: 14
+            abs_sigma: False
+            hierarchical: True
+            no_background: False
+            
+        foreground_kwargs:
+            positional_encoding: "normal"
+            downscale_p_by: 1
+            use_style: "StyleGAN2"
+            predict_rgb: True
+            use_viewdirs: False
+            normalized_feat: True
+
+        background_kwargs:
+            positional_encoding: "normal"
+            hidden_size: 64
+            n_blocks: 4
+            downscale_p_by: 1
+            skips: []
+            inverse_sphere: True
+            use_style: "StyleGAN2"
+            predict_rgb: True
+            use_viewdirs: False
+            normalized_feat: True
+
+        upsampler_kwargs:
+            channel_base: ${model.G_kwargs.synthesis_kwargs.channel_base}
+            channel_max:  ${model.G_kwargs.synthesis_kwargs.channel_max}
+            no_2d_renderer: False
+            no_residual_img: True
+            block_reses: ~
+            shared_rgb_style: False
+            upsample_type: "pixelshuffle"
+            _lambda: 1.0
+        
+        progressive: True
+
+        # reuglarization
+        n_reg_samples: 16
+        reg_full: True
+
+D_kwargs:
+    class_name: "training.stylenerf_4_E3_Face.Discriminator"
+    epilogue_kwargs:
+        mbstd_group_size: ${spec.mbstd}
+    
+    t_dim: 512 # see CLIP global embedding
+    num_fp16_res: ${num_fp16_res}
+    channel_base: ${spec.fmaps}
+    channel_max: 512
+    conv_clamp: 256
+    architecture: skip
+    progressive: ${model.G_kwargs.synthesis_kwargs.progressive}
+    lowres_head: ${model.G_kwargs.synthesis_kwargs.resolution_start}
+    upsample_type: "pixelshuffle"
+    resize_real_early: True
+
+# loss kwargs
+loss_kwargs:
+    pl_batch_shrink: 2
+    pl_decay: 0.01
+    pl_weight: 2
+    style_mixing_prob: 0.9
+    curriculum: [500,5000]
+    clip_loss: True

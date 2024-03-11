@@ -1,0 +1,12 @@
+name: paper512_mmceleba
+ref_gpus: 4
+kimg: 28000
+mb: 64
+mbstd: 4
+fmaps: 1
+lrate: 0.00025
+lrate_disc: 0.00025
+gamma: 0.5
+ema: 20
+ramp: ~
+map: 8

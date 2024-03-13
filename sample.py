@@ -110,7 +110,7 @@ def generate_images(
         _,edit_t_token = clip_model.encode_text(edit_t_ids)
         edit_t_token = edit_t_token.detach()
     # avoid persistent classes... 
-    from training.networks_4_text_delta import Generator
+    from training.networks_4_E3_Face import Generator
     # from training.stylenerf import Discriminator
     from torch_utils import misc
     with torch.no_grad():

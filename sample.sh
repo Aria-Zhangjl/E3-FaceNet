@@ -1,7 +1,7 @@
 export OUTDIR='OUTPUT_DIR'
-export CHECKPOINT_PATH='Path to Checkpoint'
+export CHECKPOINT_PATH='/home/xmu/zjl/code/E3-FaceNet/ckpt/_final_model.pkl'
 
-export SEEDS='seed number'
+export SEEDS='42'
 CUDA_VISIEBLE_DEVICES=6 python sample.py \
     --outdir=$OUTDIR --trunc=0.7 --seeds=$SEEDS --network=$CHECKPOINT_PATH \
     --render-program="rotation_camera" \

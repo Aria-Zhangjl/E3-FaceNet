@@ -47,10 +47,33 @@ def load_network_pkl(f, force_fp16=False):
             old = data[key]
             kwargs = copy.deepcopy(old.init_kwargs)
             if key.startswith('G'):
+                kwargs.class_name = 'training.networks_4_E3_Face.Generator'
                 kwargs.synthesis_kwargs = dnnlib.EasyDict(kwargs.get('synthesis_kwargs', {}))
                 kwargs.synthesis_kwargs.num_fp16_res = 4
                 kwargs.synthesis_kwargs.conv_clamp = 256
+                kwargs.synthesis_kwargs.module_name = 'training.stylenerf_4_E3_Face.NeRFSynthesisNetwork'
+                kwargs.mapping_kwargs.module_name = 'training.networks_4_E3_Face.MappingNetwork_4_text'
             if key.startswith('D'):
+                kwargs.class_name = 'training.stylenerf_4_E3_Face.Discriminator'
+                kwargs.num_fp16_res = 4
+                kwargs.conv_clamp = 256
+            if kwargs != old.init_kwargs:
+                new = type(old)(**kwargs).eval().requires_grad_(False)
+                misc.copy_params_and_buffers(old, new, require_all=True)
+                data[key] = new
+    else:
+        for key in ['G', 'D', 'G_ema']:
+            old = data[key]
+            kwargs = copy.deepcopy(old.init_kwargs)
+            if key.startswith('G'):
+                # kwargs.class_name = 'training.networks_4_E3_Face.Generator'
+                kwargs.synthesis_kwargs = dnnlib.EasyDict(kwargs.get('synthesis_kwargs', {}))
+                kwargs.synthesis_kwargs.num_fp16_res = 4
+                kwargs.synthesis_kwargs.conv_clamp = 256
+                kwargs.synthesis_kwargs.module_name = 'training.stylenerf_4_E3_Face.NeRFSynthesisNetwork'
+                kwargs.mapping_kwargs.module_name = 'training.networks_4_E3_Face.MappingNetwork_4_text'
+            if key.startswith('D'):
+                # kwargs.class_name = 'training.stylenerf_4_E3_Face.Discriminator'
                 kwargs.num_fp16_res = 4
                 kwargs.conv_clamp = 256
             if kwargs != old.init_kwargs:

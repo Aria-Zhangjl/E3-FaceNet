@@ -35,7 +35,7 @@ bash run_eval_4_E3_Face.sh
 use the shell script,
 
 ```
-bash generate_with_text_with.sh
+bash sample.sh
 ```
 
 

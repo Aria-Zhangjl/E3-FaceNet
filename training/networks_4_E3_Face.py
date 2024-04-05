@@ -942,7 +942,7 @@ class SynthesisBlock(torch.nn.Module):
         
         if in_channels != 0:
             self.conv0 = util.construct_class_by_name(
-                class_name=layer_kwargs.get('layer_name', "training.networks.SynthesisLayer"),
+                class_name=layer_kwargs.get('layer_name', "training.networks_4_E3_Face.SynthesisLayer"),
                 in_channels=in_channels, out_channels=out_channels, 
                 w_dim=w_dim, resolution=resolution, 
                 up=2 if (not disable_upsample) else 1,
@@ -952,7 +952,7 @@ class SynthesisBlock(torch.nn.Module):
 
         if not self.use_single_layer:
             self.conv1 = util.construct_class_by_name(
-                    class_name=layer_kwargs.get('layer_name', "training.networks.SynthesisLayer"),
+                    class_name=layer_kwargs.get('layer_name', "training.networks_4_E3_Face.SynthesisLayer"),
                     in_channels=out_channels, out_channels=out_channels, 
                     w_dim=w_dim, resolution=resolution,
                     conv_clamp=conv_clamp, channels_last=self.channels_last, **layer_kwargs)
@@ -1226,7 +1226,7 @@ class Generator(torch.nn.Module):
         self.img_resolution = img_resolution
         self.img_channels = img_channels
         self.synthesis = util.construct_class_by_name(
-            class_name=synthesis_kwargs.get('module_name', "training.networks_4_text_delta.SynthesisNetwork"),
+            class_name=synthesis_kwargs.get('module_name', "training.networks_4_E3_Face.SynthesisNetwork"),
             w_dim=w_dim, img_resolution=img_resolution, img_channels=img_channels, **synthesis_kwargs)
         self.num_ws  = self.synthesis.num_ws
         self.mapping = None
@@ -1234,7 +1234,7 @@ class Generator(torch.nn.Module):
 
         if len(mapping_kwargs) > 0:   # Use mapping network
             self.mapping = util.construct_class_by_name(
-                class_name=mapping_kwargs.get('module_name', "training.networks_4_text_delta.MappingNetwork"),
+                class_name=mapping_kwargs.get('module_name', "training.networks_4_E3_Face.MappingNetwork"),
                 z_dim=z_dim, t_dim=t_dim, w_dim=w_dim, num_ws=self.num_ws, **mapping_kwargs)
         
         if len(encoder_kwargs) > 0:   # Use Image-Encoder

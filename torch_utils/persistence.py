@@ -216,6 +216,10 @@ def _module_to_src(module):
 def _src_to_module(src):
     r"""Get or create a Python module for the given source code.
     """
+    src = src.replace('networks_4_text','networks_4_E3_Face')
+    src = src.replace('networks_4_text_delta','networks_4_E3_Face')
+    src = src.replace('stylenerf_4_text_learn_delta','stylenerf_4_E3_Face')
+
     module = _src_to_module_dict.get(src, None)
     if module is None:
         module_name = "_imported_module_" + uuid.uuid4().hex

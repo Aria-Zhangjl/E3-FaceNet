@@ -81,7 +81,7 @@ def generate_images(
     save_idx = None,
 ):
     device = torch.device('cuda')
-    clip_model, _ = clip.load("ViT-B/32", device=device)
+    clip_model, _ = clip.load("ViT-B/32", device=device,jit=False)
     clip_model.eval()
     if os.path.isdir(network_pkl):
         network_pkl = sorted(glob.glob(network_pkl + '/*.pkl'))[-1]

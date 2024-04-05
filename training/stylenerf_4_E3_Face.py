@@ -13,7 +13,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from torch.autograd import grad
-from training.networks_4_text import *
+from training.networks_4_E3_Face import *
 from dnnlib.camera import *
 from dnnlib.geometry import (
     positional_encoding, upsample, downsample
@@ -1325,7 +1325,7 @@ class Upsampler(object):
                 is_last      = (ir == (len(self.block_resolutions) - 1))
                 no_upsample  = (res == res_before)
                 block        = util.construct_class_by_name(
-                    class_name=block_kwargs.get('block_name', "training.networks_4_text_delta.SynthesisBlock"),
+                    class_name=block_kwargs.get('block_name', "training.networks_4_E3_Face.SynthesisBlock"),
                     in_channels=in_channels, 
                     out_channels=out_channels, 
                     w_dim=w_dim, 
@@ -1337,7 +1337,7 @@ class Upsampler(object):
                     block_id=ir,
                     **block_kwargs)
                 attn_block   = util.construct_class_by_name(
-                    class_name=block_kwargs.get('block_name', "training.networks_4_text_delta.TransformerBlock"),
+                    class_name=block_kwargs.get('block_name', "training.networks_4_E3_Face.TransformerBlock"),
                     dim=in_channels, 
                     size=res_before,
                     num_attention_heads=8, 
@@ -1347,7 +1347,7 @@ class Upsampler(object):
                     attention_bias=False,
                     use_fp16=use_fp16,)
                 offset_mapper = util.construct_class_by_name(
-                    class_name=block_kwargs.get('block_name', "training.networks_4_text_delta.MappingBlock"),
+                    class_name=block_kwargs.get('block_name', "training.networks_4_E3_Face.MappingBlock"),
                     in_channels=in_channels, 
                     in_res=res_before,
                     out_dim=w_dim, 
@@ -1786,7 +1786,7 @@ class NeRFSynthesisNetwork(torch.nn.Module):
 
         # full model resolutions
         self.block_resolutions = copy.deepcopy(self.U.block_resolutions)
-        print('self.block_resolutions:',self.block_resolutions)
+        # print('self.block_resolutions:',self.block_resolutions)
         if self.resolution_start < self.resolution_vol:
             r = self.resolution_vol
             while r > self.resolution_start:

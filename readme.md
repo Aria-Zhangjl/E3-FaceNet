@@ -22,13 +22,16 @@ pip install -r requirements.txt
 
 Please refer to https://github.com/NVlabs/stylegan2-ada-pytorch for additional software/hardware requirements.
 
+> [!TIP]
+> A modification has been made to the clip package to enable simultaneous extraction of text features and token embeddings. Please replace the existing [model.py](https://github.com/Aria-Zhangjl/E3-FaceNet/blob/main/model.py) file in your own clip installation path.
+
 ### Data Preparation
 We train our $E^3$-FaceNet on [Multi-Modal-CelebA-HQ Dataset](https://github.com/IIGROUP/MM-CelebA-HQ-Dataset) (MM-CelebA) and evaluation on MMCelebA, [CelebAText-HQ](https://github.com/cripac-sjx/SEA-T2F) and [FFHQ-Text](https://github.com/Yutong-Zhou-cv/FFHQ-Text_Dataset). 
 
 Before training, please dowload the [dataset2.json](https://drive.google.com/file/d/1MZda_8w96EAOWjwvGyTQBPzP1Dl9afdl/view?usp=sharing), and place the file in the MMceleba dataset directory.
 
 ### Pretrained Checkpoints
-The model weight can be download at [here](https://drive.google.com/file/d/1msBAgRYo_o3yT9Nx1q86KMZRoboxkpxB/view?usp=sharing)
+The model weight can be download at [here](https://drive.google.com/file/d/1msBAgRYo_o3yT9Nx1q86KMZRoboxkpxB/view?usp=sharing).
 
 ### Training $E^3$-FaceNet
 use the shell script,

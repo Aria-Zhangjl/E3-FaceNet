@@ -74,12 +74,21 @@ bash sample.sh
 ## 🖊️ Citation
 If $E^3$-FaceNet is helpful for your research or you wish to refer the baseline results published here, we'd really appreciate it if you could cite this paper:
 ```
-@article{zhang2024fast,
-  title={Fast Text-to-3D-Aware Face Generation and Manipulation via Direct Cross-modal Mapping and Geometric Regularization},
-  author={Zhang, Jinlu and Zhou, Yiyi and Zheng, Qiancheng and Du, Xiaoxiong and Luo, Gen and Peng, Jun and Sun, Xiaoshuai and Ji, Rongrong},
-  journal={arXiv preprint arXiv:2403.06702},
-  year={2024}
+@InProceedings{zhang2024fast,
+  title = 	 {Fast Text-to-3{D}-Aware Face Generation and Manipulation via Direct Cross-modal Mapping and Geometric Regularization},
+  author =       {Zhang, Jinlu and Zhou, Yiyi and Zheng, Qiancheng and Du, Xiaoxiong and Luo, Gen and Peng, Jun and Sun, Xiaoshuai and Ji, Rongrong},
+  booktitle = 	 {Proceedings of the 41st International Conference on Machine Learning},
+  pages = 	 {60605--60625},
+  year = 	 {2024},
+  editor = 	 {Salakhutdinov, Ruslan and Kolter, Zico and Heller, Katherine and Weller, Adrian and Oliver, Nuria and Scarlett, Jonathan and Berkenkamp, Felix},
+  volume = 	 {235},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {21--27 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://raw.githubusercontent.com/mlresearch/v235/main/assets/zhang24cp/zhang24cp.pdf},
+  url = 	 {https://proceedings.mlr.press/v235/zhang24cp.html},
 }
+
 ```
 
 ## 🎫 Acknowledgment

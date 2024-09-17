@@ -1,5 +1,5 @@
 # $E^3$-FaceNet
-This is an official implementation of ICML 2024 Paper ["Fast Text-to-3D-Aware Face Generation and Manipulation via Direct Cross-modal Mapping and Geometric Regularization"](https://arxiv.org/abs/2403.06702). The proposed $E^3$-FaceNet is an **E**nd-to-End **E**fficient and **E**ffective network for fast and accurate T3D face generation and manipulation, which can not only achieve picture-like 3D face generation and manipulation, but also improve inference speed by orders of magnitudes.
+This is an official implementation of ICML 2024 Paper ["Fast Text-to-3D-Aware Face Generation and Manipulation via Direct Cross-modal Mapping and Geometric Regularization"](https://proceedings.mlr.press/v235/zhang24cp.html). The proposed $E^3$-FaceNet is an **E**nd-to-End **E**fficient and **E**ffective network for fast and accurate T3D face generation and manipulation, which can not only achieve picture-like 3D face generation and manipulation, but also improve inference speed by orders of magnitudes.
 
 
 

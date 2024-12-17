@@ -302,7 +302,7 @@ def subprocess_fn(rank, args):
         custom_ops.verbosity = 'none'
     
     # Execute training loop.
-    training_loop_text_delta.training_loop(**args)
+    training_loop_4_E3_Face.training_loop(**args)
     
 #----------------------------------------------------------------------------
 

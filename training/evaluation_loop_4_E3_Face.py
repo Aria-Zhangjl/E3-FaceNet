@@ -66,7 +66,7 @@ def eval_loop(
     # Reload networks.
     if resume_pkl is not None:
         with dnnlib.util.open_url(resume_pkl) as f:
-            network = legacy.load_network_pkl(f)
+            network = legacy.load_network_pkl(f,init_from_origin=False)
             G = network['G_ema'].to(device) # type: ignore
             del network
     else:

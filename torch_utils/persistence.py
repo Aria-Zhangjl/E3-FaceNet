@@ -216,6 +216,9 @@ def _module_to_src(module):
 def _src_to_module(src):
     r"""Get or create a Python module for the given source code.
     """
+    import re
+    src = re.sub(r'\bnetworks\b', 'networks_4_E3_Face', src)
+    src = re.sub(r'\bstylenerf\b', 'stylenerf_4_E3_Face', src)
     src = src.replace('networks_4_text','networks_4_E3_Face')
     src = src.replace('networks_4_text_delta','networks_4_E3_Face')
     src = src.replace('stylenerf_4_text_learn_delta','stylenerf_4_E3_Face')

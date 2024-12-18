@@ -135,7 +135,7 @@ def setup_training_loop_kwargs(cfg):
     args.update({"D_kwargs": dict(**cfg.model.D_kwargs)})
     args.update({"G_opt_kwargs": dict(class_name='torch.optim.Adam', lr=cfg.spec.lrate, betas=[0,0.99], eps=1e-8)})
     args.update({"D_opt_kwargs": dict(class_name='torch.optim.Adam', lr=cfg.spec.lrate_disc, betas=[0,0.99], eps=1e-8)})
-    args.update({"loss_kwargs": dict(class_name='training.loss_4_text_delta.StyleGAN2Loss', r1_gamma=cfg.spec.gamma, **cfg.model.loss_kwargs)})
+    args.update({"loss_kwargs": dict(class_name='training.loss_4_E3_Face.StyleGAN2Loss', r1_gamma=cfg.spec.gamma, **cfg.model.loss_kwargs)})
     
     if cfg.spec.name == 'cifar':
         args.loss_kwargs.pl_weight = 0 # disable path length regularization

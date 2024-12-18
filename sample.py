@@ -88,7 +88,7 @@ def generate_images(
     print('Loading networks from "%s"...' % network_pkl)
     
     with dnnlib.util.open_url(network_pkl) as f:
-        network = legacy.load_network_pkl(f)
+        network = legacy.load_network_pkl(f,init_from_origin=False)
         G = network['G_ema'].to(device) # type: ignore
         D = network['D'].to(device)
     # from fairseq import pdb;pdb.set_trace()

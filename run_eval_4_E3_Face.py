@@ -14,7 +14,7 @@ import dnnlib
 import hydra
 
 from datetime import date
-from training import evaluation_loop_text_delta
+from training import evaluation_loop_4_E3_Face
 from metrics import metric_main
 from torch_utils import training_stats, custom_ops, distributed_utils
 from torch_utils.distributed_utils import get_init_file, get_shared_folder

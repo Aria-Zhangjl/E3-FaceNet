@@ -1,5 +1,5 @@
 export OUTDIR='OUTPUT_DIR'
-export CHECKPOINT_PATH='/home/xmu/zjl/code/E3-FaceNet/ckpt/_final_model.pkl'
+export CHECKPOINT_PATH='./ckpt/_final_model.pkl'
 
 export SEEDS='42'
 CUDA_VISIEBLE_DEVICES=6 python sample.py \

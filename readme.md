@@ -37,7 +37,7 @@ The model weight can be download at [here](https://drive.google.com/file/d/1msBA
 use the shell script,
 
 ```
-bash train_train_4_E3_Face.sh
+bash run_train_4_E3_Face.sh
 ```
 
 Please check configuration files at ```conf/model``` and ```conf/spec```. You can always add your own model config. More details on how to use hydra configuration please follow https://hydra.cc/docs/intro/.
